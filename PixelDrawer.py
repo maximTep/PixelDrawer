@@ -103,10 +103,9 @@ grid = [[0 for x in range(W // scale)] for y in range(H // scale)]
 
 
 f = open('last_num.txt', 'r')
-last_num = int(f.read())
+last_num, cur_digit = map(int, f.read().split(' '))
+pygame.display.set_caption(f'Drawer {cur_digit}')
 f.close()
-last_num += 1
-cur_digit = 0
 
 
 was_clicked = False
@@ -134,12 +133,13 @@ while running:
         if cur_digit == 9:
             last_num += 1
         cur_digit = (cur_digit + 1) % 10
+        pygame.display.set_caption(f'Drawer {cur_digit}')
         grid = [[0 for x in range(W // scale)] for y in range(H // scale)]
 
     pygame.display.update()
 
 f = open('last_num.txt', 'w')
-f.write(str(last_num))
+f.write(str(last_num) + ' ' + str(cur_digit))
 f.close()
 
 

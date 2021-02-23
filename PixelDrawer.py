@@ -96,6 +96,11 @@ def small_pixel_circle(grid, center, radius=3):
     whiten(grid, [x, y - 1], add1)
 
 
+def pixel_reader(image: pygame.Surface):
+    grid = [[image.get_at([y * scale, x * scale])[0] / 255 for x in range(W // scale)] for y in range(H // scale)]
+    return grid
+
+
 scale = 10
 n = len(range(H // scale))
 m = len(range(W // scale))
